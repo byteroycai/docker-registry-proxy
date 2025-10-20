@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  registry:
+    image: registry:2
+    restart: always
+    volumes:
+      - ./registry/config.yml:/etc/docker/registry/config.yml
+      - ./registry/cache:/var/lib/registry
+    networks:
+      - regnet
+
+  caddy:
+    image: caddy:alpine
+    restart: always
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./logs:/var/log/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - regnet
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  regnet:
+    driver: bridge
