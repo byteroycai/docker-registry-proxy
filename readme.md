@@ -1,7 +1,9 @@
 # docker-registry-proxy
 
 
-## 使用方法
+教程：https://www.hackeradar.com/posts/docker/docker-registry-proxy
+
+## 维护
 
 初始化 + 启动服务
 ```bash
@@ -18,7 +20,6 @@ make cleanup
 ```bash
 make cron
 ```
-
 
 停止服务
 ```bash
